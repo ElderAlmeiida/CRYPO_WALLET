@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# CRYPO_WALLET
+crypto values 
+>>>>>>> 70a297bfc2c042f986a76083e2deaf822b82fed7
