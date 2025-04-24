@@ -14,6 +14,8 @@ Rails.application.configure do
 
   # Enable server timing.
   config.server_timing = true
+  # rack-livereload
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
   # Run rails dev:cache to toggle Action Controller caching.

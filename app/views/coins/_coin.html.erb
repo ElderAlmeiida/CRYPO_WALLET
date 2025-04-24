@@ -1,22 +1,26 @@
-<div id="<%= dom_id coin %>">
-  <p>
-    <strong>Description:</strong>
-    <%= coin.description %>
-  </p>
+<div id="content_coins">
+  <div class="coin-card" id="<%= dom_id coin %>">
+    
+    <!-- Imagem -->
+    <div class="coin-image">
+      <img src="<%= coin.url_image %>" width="150" height="150" alt="<%= coin.acronym %> logo" />
+    </div>
 
-  <p>
-    <strong>Acronym:</strong>
-    <%= coin.acronym %>
-  </p>
+    <!-- Info -->
+    <div class="coin-info">
+      <div class="coin-top">
+        <span class="coin-name"><%= coin.description %></span>
+        <span class="coin-symbol"><%= coin.acronym %></span>
+      </div>
+      <p class="coin-price">
+        <%= number_to_currency(coin.price) %>
+        <span class="usd">USD</span>
+      </p>
+    </div>
 
-  <p>
-    <strong>Url image:</strong>
-    <%= coin.url_image %>
-  </p>
+ 
 
-  <p>
-    <strong>Price:</strong>
-    <%= coin.price %>
-  </p>
+  </div>
+</div>
 
 </div>

@@ -1,0 +1,28 @@
+<h1 class="logo"> <%= link_to "CRYPO WALLET", welcome_index_path%> </h1>
+<p >Data:<%= date_br(Date.today) %></p>
+<%= nome_aplicacao %>
+
+<%= link_to "New coin", new_coin_path %>
+ <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Coins" %>
+
+<div id="coins">
+  <% @coins.each do |coin| %>
+    <%= render coin %>
+    <p>
+      <%= link_to "Show this coin", coin %>
+    </p>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
