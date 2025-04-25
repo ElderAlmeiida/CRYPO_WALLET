@@ -1,16 +1,28 @@
 Rails.application.routes.draw do
+  # Rota para a página de index do welcome
   get "welcome/index"
-  resources :coins
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Definir o root da aplicação
+  root to: "welcome#index"
+
+  # Rota de busca de criptomoedas no controlador CoinsSearchController
+  get "coins_search/search", to: "coins_search#search", as: :coins_search_search
+  get "crypto/search", to: "coins_search#search", as: :crypto_search
+  get "crypto/:id", to: "coins_search#details", as: :coin_details
+  post "coins/import/:id", to: "coins#import", as: :import_coin
+
+
+  # Recursos para o controlador de moedas (CRUD)
+  resources :coins
+
+
+  # Rota para verificar o status da aplicação
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  # Outras rotas específicas para PWA (Progressive Web App)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
+  # A rota padrão (comentada, caso queira utilizar para outra página)
   # root "posts#index"
 end

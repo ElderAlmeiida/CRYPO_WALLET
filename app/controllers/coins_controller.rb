@@ -4,6 +4,7 @@ class CoinsController < ApplicationController
   # GET /coins or /coins.json
   def index
     @coins = Coin.all
+    search if params[:query].present?
   end
 
   # GET /coins/1 or /coins/1.json
@@ -49,7 +50,7 @@ class CoinsController < ApplicationController
 
   # DELETE /coins/1 or /coins/1.json
   def destroy
-    @coin.destroy!
+    @coin.destroy
 
     respond_to do |format|
       format.html { redirect_to coins_path, status: :see_other, notice: "Coin was successfully destroyed." }
@@ -58,13 +59,68 @@ class CoinsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_coin
-      @coin = Coin.find(params.expect(:id))
+      @coin = Coin.find(params.require(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def coin_params
-      params.expect(coin: [ :description, :acronym, :url_image, :price ])
+      params.require(:coin).permit(:description, :acronym, :url_image, :price)
     end
+    def import
+      coin_data = CryptoService.details(params[:id])
+
+      if coin_data.nil?
+        redirect_to crypto_search_path, alert: "Cripto não encontrada para importação."
+        return
+      end
+
+      coin = Coin.new(
+        description: coin_data[:name],
+        acronym: coin_data[:symbol].upcase,
+        url_image: coin_data[:image],
+        price: coin_data[:price_usd]
+      )
+
+      if coin.save
+        redirect_to coin_path(coin), notice: "Cripto importada com sucesso!"
+      else
+        redirect_to crypto_search_path, alert: "Erro ao salvar a cripto: #{coin.errors.full_messages.to_sentence}"
+      end
+    end
+    def import
+      coin_data = CryptoService.details(params[:id])
+
+      if coin_data.nil?
+        redirect_to crypto_search_path, alert: "Criptomoeda não encontrada para importação."
+        return
+      end
+
+      coin = Coin.new(
+        description: coin_data[:name],
+        acronym: coin_data[:symbol].upcase,
+        url_image: coin_data[:image],
+        price: coin_data[:price_usd]
+      )
+
+      if coin.save
+        redirect_to coin_path(coin), notice: "Criptomoeda importada com sucesso!"
+      else
+        redirect_to crypto_search_path, alert: "Erro ao salvar a criptomoeda: #{coin.errors.full_messages.to_sentence}"
+      end
+    end
+
+    private
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_coin
+        @coin = Coin.find(params.require(:id))
+      end
+
+      # Only allow a list of trusted parameters through.
+      def coin_params
+        params.require(:coin).permit(:description, :acronym, :url_image, :price)
+      end
 end

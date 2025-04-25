@@ -1,0 +1,6 @@
+
+<% if @results.present? %>
+  $("#search-results").html("<%= j(render partial: 'coins_search/results', locals: { results: @results }) %>");
+<% else %>
+  $("#search-results").html("<p>Nenhuma moeda encontrada.</p>");
+<% end %>

@@ -9,3 +9,21 @@
 <div>
   <%= link_to "Back to coins", coins_path %>
 </div>
+
+<h1>Buscar Criptomoedas</h1>
+
+<%= form_with url: coins_search_search_path, method: :get, local: false, html: { id: "search-form" } do %>
+  <%= label_tag :query, "Digite o nome da cripto:" %>
+  <%= text_field_tag :query, params[:query], placeholder: "Ex: Bitcoin, Ethereum" %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
+<!-- Resultados serão renderizados aqui -->
+<div id="search-results">
+  <% if @results.present? %>
+    <%= render partial: 'coins_search/results', locals: { results: @results } %>
+  <% elsif params[:query].present? %>
+    <p>Nenhuma moeda encontrada.</p>
+  <% end %>
+</div>
+

@@ -1,0 +1,27 @@
+<!-- app/views/coins_search/search.html.erb -->
+
+<% content_for :title, "Buscar Criptomoedas" %>
+
+<h1>Buscar Criptomoedas</h1>
+
+<%= form_with url: crypto_search_path, method: :get, local: true do %>
+  <%= label_tag :query, "Digite o nome da cripto:" %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
+<% if @results.present? %>
+  <h2>Resultados:</h2>
+  <ul>
+    <% @results.each do |coin| %>
+      <li>
+        <%= image_tag coin[:image], alt: coin[:name], width: 32 %>
+        <strong><%= coin[:name] %> (<%= coin[:symbol].upcase %>)</strong>
+       <%= link_to "Ver preço", coin_details_path(coin[:id]) %>  
+
+      </li>
+    <% end %>
+  </ul>
+<% elsif params[:query].present? %>
+  <p>Nenhuma moeda encontrada.</p>
+<% end %>

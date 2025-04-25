@@ -5,4 +5,7 @@ module ApplicationHelper
   def nome_aplicacao
     "CRYPTO WALLET APP"
   end
+
+  def header
+  end
 end

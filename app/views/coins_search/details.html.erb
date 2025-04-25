@@ -1,0 +1,13 @@
+<% content_for :title, @coin[:name] %>
+
+<h1><%= @coin[:name] %> (<%= @coin[:symbol] %>)</h1>
+
+<p><strong>Preço (USD):</strong> <%= number_to_currency(@coin[:price_usd]) %></p>
+<p><strong>Maior Preço (24h):</strong> <%= number_to_currency(@coin[:high_24h]) %></p>
+<p><strong>Menor Preço (24h):</strong> <%= number_to_currency(@coin[:low_24h]) %></p>
+
+<%= image_tag @coin[:image], alt: @coin[:name], width: 100 %>
+
+<%= link_to "Voltar", crypto_search_path %>
+<%= button_to "Importar para Carteira", import_coin_path(params[:id]), method: :post, class: "btn btn-primary" %>
+
