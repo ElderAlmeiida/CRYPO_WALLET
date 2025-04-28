@@ -4,7 +4,7 @@
     <li>
       <%= image_tag coin[:image], alt: coin[:name], width: 32 %>
       <strong><%= coin[:name] %> (<%= coin[:symbol].upcase %>)</strong>
-      <%= link_to "Ver preço", crypto_search_path(query: coin[:id]) %>
+      <%= link_to "Ver preço", coin_details_path(id: coin[:id]) %>
     </li>
   <% end %>
 </ul>

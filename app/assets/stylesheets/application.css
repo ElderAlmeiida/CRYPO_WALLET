@@ -1,110 +1,324 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
-
-
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap');
+/* Corpo */
+body {
+  background-color: #2F2F2F;
+  font-family: "Teko", sans-serif !important;
+  font-style: normal;
+  padding: 2rem 18.81rem;
+  color: white;
+}
 
- body{
-    display: grid;
-    align-items: center;
-    background-color: #2F2F2F;
-    
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    padding-top: 1rem;
-    padding-left: 18.81rem;
-    padding-right: 18.81rem;
-    
-    /* Fonte */
-    font-family: "Teko", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-      
- }
+/* Top Bar */
+.top-bar {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
 
- .logo a{
-     font-size: 3rem;
-     color: #26DA6B !important;
-     text-decoration: none;
- }
+/* Estilo para a informação do ambiente */
+.environment-info {
+  background-color: rgb(199, 199, 25);
+  color: white;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0;
+  flex: 1; /* Ocupa o restante do espaço à esquerda */
+  text-align: left;
+}
 
+/* Estilo da mensagem de boas-vindas */
+.welcome-message {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
+  flex: 2; /* Ocupe mais espaço, centralizando o texto */
+}
 
- #content_coins {
-    padding: 2rem;
-    
+/* Estilo da data */
+.date-info {
+  font-size: 1.2rem;
+  color: white;
+  margin: 0;
+  text-align: right;
+  flex: 1; /* Alinha à direita */
+}
+
+/* Logo */
+.logo a {
+  color: #26DA6B;
+  font-size: 4.8rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+
+/* Estilo do conteúdo de moedas */
+#content_coins {
+  padding: 2rem;
+}
+
+.coin-card {
+  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(71, 71, 71, 0.5);
+  border-radius: 16px;
+  padding: 2rem;
+  gap: 2rem;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 55rem;
+  width: 100%;
+  position: relative;
+  margin: auto;
+}
+
+.coin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-image img {
+  width: 9.37rem;
+  height: 9.37rem;
+  object-fit: contain;
+  margin-right: 4rem;
+}
+
+.coin-main-info {
+  text-align: center;
+}
+
+.coin-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.coin-symbol {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.coin-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.coin-price .usd {
+  font-size: 0.8rem;
+  vertical-align: super;
+  margin-left: 0.2rem;
+}
+
+.coin-extra-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.coin-high, .coin-low, .coin-variation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.coin-high i, .coin-low i, .coin-variation i {
+  font-size: 1.5rem; /* 24px em rem */
+  margin-bottom: 0.5rem; /* Espaçamento entre o ícone e o texto */
+}
+
+.high-value {
+  color: #26DA6B;
+  font-size: 1.5rem;
+}
+
+.low-value {
+  color: #DA2626;
+  font-size: 1.5rem;
+}
+
+.variation-value {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.vl {
+  border-left: 3px solid white;
+  height: 150px;
+  margin: 0 1rem;
+}
+
+/* Ícone de Olho para Ver Mais */
+.coin-view-more {
+  text-align: center;
+  margin-top: 15px;
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  text-align: right;
+}
+
+.view-more-link i {
+  font-size: 1.5rem; /* 24px em rem */
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.view-more-link i:hover {
+  color: #26DA6B;
+}
+
+/* Responsividade */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  body {
+    padding: 2rem 5rem;
   }
-  
+
   .coin-card {
-    min-width:27.5rem ;
-    max-width: 55.43rem;
-    display: flex;
-    align-items: center;
-    background-color: rgba(71, 71, 71, 0.5) ;
-    border-radius: 16px;
-    padding: 2rem 2rem;
-    color: white;
-    gap: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
-  
+
   .coin-image img {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
+    width: 100px;
+    height: 100px;
   }
-  
-  .coin-info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-   
-    
-  }
-  
-  .coin-name {
-   
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    
-  }
-  
 
-  
-  .coin-price {
-    font-size: 2.5rem;
-    font-weight: bold;
-    
+  .coin-name {
+    font-size: 1.3rem;
   }
-  
-  .coin-price .usd {
-    font-size: 0.7rem;
-    margin-left: 0.2rem;
-    vertical-align: super;
-    
-    
+
+  .coin-price {
+    font-size: 2rem;
+  }
+
+  .high-value, .low-value, .variation-value {
+    font-size: 1.3rem;
   }
 
   .vl {
-    border-left: 0.25rem solid white;
-    height: 9.37rem;
+    height: 120px;
   }
-  
-  .coin-spacer {
-    border-left: 1px solid #999;
-    padding-left: 1rem;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+  .coin-card {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+    max-width: 90%;
   }
-  
+
+  .vl {
+    display: none;
+  }
+
+  .coin-image img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .coin-main-info {
+    text-align: center;
+  }
+
+  .coin-extra-info {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  .coin-card {
+    padding: 1rem;
+  }
+
+  .coin-image img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .coin-name {
+    font-size: 1.2rem;
+  }
+
+  .coin-symbol {
+    font-size: 0.9rem;
+  }
+
+  .coin-price {
+    font-size: 1.8rem;
+  }
+
+  .high-value, .low-value, .variation-value {
+    font-size: 1.1rem;
+  }
+
+  .coin-extra-info {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+.add_button {
+  position: fixed; /* Fixa o botão na tela */
+  bottom: 2rem; /* Distância da borda inferior */
+  left: 2rem;   /* Distância da borda esquerda */
+  width: 50px;
+  height: 50px;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+.add_button button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background-color: #26DA6B;
+  color: white;
+  font-size: 1.8rem; /* Tamanho da fonte ajustado para 50px */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave no hover */
+}
+
+.add_button button:hover {
+  background-color: #359b5c;
+}
+
+.add_button a {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem; /* Ajustei o tamanho da fonte para caber bem */
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+

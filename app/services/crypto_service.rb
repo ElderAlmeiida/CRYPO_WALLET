@@ -13,7 +13,7 @@ class CryptoService
         id: coin["id"],
         name: coin["name"],
         symbol: coin["symbol"],
-        image: coin["large"]  # link da imagem
+        image: coin["large"]
       }
     end
   rescue StandardError => e
@@ -29,9 +29,9 @@ class CryptoService
       name: data["name"],
       symbol: data["symbol"],
       image: data["image"]["large"],
-      price_usd: data["market_data"]["current_price"]["usd"],
-      high_24h: data["market_data"]["high_24h"]["usd"],  # Maior preço nas últimas 24h
-      low_24h: data["market_data"]["low_24h"]["usd"]    # Menor preço nas últimas 24h
+      price_usd: data.dig("market_data", "current_price", "usd"),
+      high_24h: data.dig("market_data", "high_24h", "usd"),
+      low_24h: data.dig("market_data", "low_24h", "usd")
     }
   rescue StandardError => e
     Rails.logger.error "Erro ao buscar detalhes da cripto: #{e.message}"

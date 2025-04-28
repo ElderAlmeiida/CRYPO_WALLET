@@ -16,15 +16,68 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <p >Data:<%= date_br(Date.today) %></p>
-    <h1 class="logo"> <%= link_to "CRYPO WALLET", root_path%> </h1>
-    <%= yield %>
-  </body>
+ <body>
+  <div id="update-notification" style="display:none; position:fixed; bottom:20px; right:20px; background:green; color:white; padding:10px; border-radius:5px; z-index:1000;">
+  Valores atualizados!
+</div>
+  <div class="top-bar">
+    <!-- Ambiente -->
+    <p class="environment-info">Você está em ambiente de <strong><%= ambiente_rails %></strong></p>
+    <!-- Bem-vindo -->
+    <p class="welcome-message">Bem-vindo <%= @nome %>!</p>
+    <!-- Data -->
+    <p class="date-info">Data: <%= date_br(Date.today, Time.now) %></p>
+  </div>
+  
+  <!-- Título -->
+  <h1 class="logo"><%= link_to "CRYPO WALLET", root_path %></h1>
+
+  <%= yield %>
+</body>
+
 </html>
+
+
+<script>
+  function updateCoins() {
+    fetch('<%= update_prices_coins_path %>', {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': '<%= form_authenticity_token %>',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(coins => {
+      coins.forEach(coin => {
+        const priceElement = document.getElementById(`price-${coin.id}`);
+        const highElement = document.getElementById(`high-${coin.id}`);
+        const lowElement = document.getElementById(`low-${coin.id}`);
+
+        if (priceElement) priceElement.textContent = Number(coin.price).toFixed(2);
+        if (highElement) highElement.textContent = Number(coin.high_24h).toFixed(2);
+        if (lowElement) lowElement.textContent = Number(coin.low_24h).toFixed(2);
+      });
+
+      toastr.success('Valores das moedas atualizados!', 'Atualização');
+    })
+    .catch(error => {
+      console.error('Erro ao atualizar:', error);
+      toastr.error('Erro ao atualizar moedas.', 'Erro');
+    });
+  }
+
+  setInterval(updateCoins, 5000); // Atualiza a cada 5 segundos
+</script>
+

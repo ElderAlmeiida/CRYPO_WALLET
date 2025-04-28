@@ -1,26 +1,63 @@
 <div id="content_coins">
-  <div class="coin-card" id="<%= dom_id coin %>">
-    
-    <!-- Imagem -->
-    <div class="coin-image">
-      <img src="<%= coin.url_image %>" width="150" height="150" alt="<%= coin.acronym %> logo" />
+  <div class="coin-card" id="<%= dom_id(coin) %>">
+
+    <!-- Seção da Imagem -->
+    <div class="coin-section coin-image">
+      <img src="<%= coin.url_image %>" alt="<%= coin.acronym %> logo" />
     </div>
 
-    <!-- Info -->
-    <div class="coin-info">
+    <!-- Seção de Informações Principais -->
+    <div class="coin-section coin-main-info">
       <div class="coin-top">
         <span class="coin-name"><%= coin.description %></span>
         <span class="coin-symbol"><%= coin.acronym %></span>
       </div>
+
       <p class="coin-price">
-        <%= number_to_currency(coin.price) %>
-        <span class="usd">USD</span>
+        $<span id="price-<%= coin.id %>"><%= number_with_precision(coin.price, precision: 2) %></span> <span class="usd">USD</span>
       </p>
     </div>
 
- 
+    <!-- Separador -->
+    <div class="vl"></div>
+
+    <!-- Seção de Alta, Baixa e Variação -->
+    <div class="coin-section coin-extra-info">
+      <div class="coin-high">
+        <i class="fa-solid fa-angles-up" style="color: #26DA6B;"></i>
+        <strong>ALTA</strong>
+        <p class="high-value">
+          $<span id="high-<%= coin.id %>"><%= number_with_precision(coin.high_24h, precision: 2) %></span>
+        </p>
+      </div>
+
+      <div class="coin-low">
+        <i class="fa-solid fa-angles-down" style="color: #DA2626;"></i>
+        <strong>BAIXA</strong>
+        <p class="low-value">
+          $<span id="low-<%= coin.id %>"><%= number_with_precision(coin.low_24h, precision: 2) %></span>
+        </p>
+      </div>
+
+      <div class="coin-variation" title="Média de variação">
+        <% variation_high = ((coin.price - coin.high_24h) / coin.high_24h.to_f * 100).round(2) rescue 0 %>
+        <% variation_low  = ((coin.price - coin.low_24h)  / coin.low_24h.to_f  * 100).round(2) rescue 0 %>
+        <% average_variation = ((variation_high.abs + variation_low.abs) / 2).round(2) rescue 0 %>
+
+        <i class="fa-solid fa-square-poll-vertical" style="color: #4A75A5;"></i>
+        <strong>M.V</strong>
+        <p class="variation-value">
+          <span id="variation-<%= coin.id %>"><%= average_variation %></span>%
+        </p>
+      </div>
+    </div>
+
+    <!-- Ícone de Olho para Ver Mais -->
+    <div title="Veja mais sobre esta moeda" class="coin-view-more">
+      <%= link_to coin_path(coin), class: "view-more-link" do %>
+        <i class="fas fa-eye"></i> 
+      <% end %>
+    </div>
 
   </div>
-</div>
-
 </div>

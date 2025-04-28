@@ -3,11 +3,24 @@
 <h1><%= @coin[:name] %> (<%= @coin[:symbol] %>)</h1>
 
 <p><strong>Preço (USD):</strong> <%= number_to_currency(@coin[:price_usd]) %></p>
+
+<!-- Adicionando os campos de Alta e Baixa -->
 <p><strong>Maior Preço (24h):</strong> <%= number_to_currency(@coin[:high_24h]) %></p>
 <p><strong>Menor Preço (24h):</strong> <%= number_to_currency(@coin[:low_24h]) %></p>
 
 <%= image_tag @coin[:image], alt: @coin[:name], width: 100 %>
 
+<%= form_with url: coins_path, method: :post do %>
+  <%= hidden_field_tag "coin[description]", @coin[:name] %>
+  <%= hidden_field_tag "coin[acronym]", (@coin[:symbol] || "").upcase %>
+  <%= hidden_field_tag "coin[url_image]", @coin[:image] %>
+  <%= hidden_field_tag "coin[price]", @coin[:price_usd] %>
+  <%= hidden_field_tag "coin[high_24h]", @coin[:high_24h] %> 
+  <%= hidden_field_tag "coin[low_24h]", @coin[:low_24h] %> 
+
+  <%= submit_tag "Importar para Carteira", class: "btn btn-primary" %>
+<% end %>
+
 <%= link_to "Voltar", crypto_search_path %>
-<%= button_to "Importar para Carteira", import_coin_path(params[:id]), method: :post, class: "btn btn-primary" %>
+
 

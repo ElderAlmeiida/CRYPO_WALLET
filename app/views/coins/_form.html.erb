@@ -2,7 +2,6 @@
   <% if coin.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(coin.errors.count, "error") %> prohibited this coin from being saved:</h2>
-
       <ul>
         <% coin.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -25,12 +24,28 @@
     <img src="<%= coin.url_image %>" width="150" height="150" alt="<%= coin.acronym %> logo" />
     <%= form.label :url_image, style: "display: block" %>
     <%= form.text_field :url_image %>
-    
   </div>
 
   <div>
     <%= form.label :price, style: "display: block" %>
     <%= form.text_field :price %>
+  </div>
+
+  <!-- Campos de Alta e Baixa -->
+  <div>
+    <%= form.label :high_24h, "Maior Preço (24h)", style: "display: block" %>
+    <%= form.text_field :high_24h %>
+  </div>
+
+  <div>
+    <%= form.label :low_24h, "Menor Preço (24h)", style: "display: block" %>
+    <%= form.text_field :low_24h %>
+  </div>
+
+  <!-- Variação média: calculada no controlador e passada para o formulário -->
+  <div>
+    <%= form.label :average_variation, "Variação Média (24h)", style: "display: block" %>
+    <%= form.text_field :average_variation, value: (coin.high_24h.to_f + coin.low_24h.to_f) / 2, readonly: true %>
   </div>
 
   <div>

@@ -1,0 +1,22 @@
+=> [[32m#<Coin:0x00007fa32b6d8208[0m
+  id: [1;34m43[0m,
+  description: [31m[1;31m"[0m[31mBitcoin[1;31m"[0m[31m[0m,
+  acronym: [31m[1;31m"[0m[31mBTC[1;31m"[0m[31m[0m,
+  url_image: [31m[1;31m"[0m[31mhttps://coin-images.coingecko.com/coins/images/1/l...[1;31m"[0m[31m[0m,
+  price: [1;35m94086.0[0m,
+  created_at: [31m[1;31m"[0m[31m2025-04-28 18:51:55.314782000 +0000[1;31m"[0m[31m[0m,
+  updated_at: [31m[1;31m"[0m[31m2025-04-28 18:51:55.314782000 +0000[1;31m"[0m[31m[0m,
+  high_24h: [1;35m0.95491e5[0m,
+  low_24h: [1;35m0.92953e5[0m,
+  coin_gecko_id: [1;36mnil[0m[32m>[0m,
+ [32m#<Coin:0x00007fa32b6d80c8[0m
+  id: [1;34m44[0m,
+  description: [31m[1;31m"[0m[31mDash[1;31m"[0m[31m[0m,
+  acronym: [31m[1;31m"[0m[31mDASH[1;31m"[0m[31m[0m,
+  url_image: [31m[1;31m"[0m[31mhttps://coin-images.coingecko.com/coins/images/19/...[1;31m"[0m[31m[0m,
+  price: [1;35m23.71[0m,
+  created_at: [31m[1;31m"[0m[31m2025-04-28 18:54:16.528214000 +0000[1;31m"[0m[31m[0m,
+  updated_at: [31m[1;31m"[0m[31m2025-04-28 18:54:16.528214000 +0000[1;31m"[0m[31m[0m,
+  high_24h: [1;35m0.2479e2[0m,
+  low_24h: [1;35m0.2099e2[0m,
+  coin_gecko_id: [1;36mnil[0m[32m>[0m]

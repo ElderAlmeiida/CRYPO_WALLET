@@ -1,19 +1,25 @@
-<%= link_to "New coin", new_coin_path %>
+
 <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
 <%= javascript_importmap_tags %>
 
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Coins" %>
-
+<div class="add_button"> 
+  <button class="add_button"> 
+    <%= link_to "+", new_coin_path %> 
+  </button>
+</div>
 <div id="coins">
   <% @coins.each do |coin| %>
     <%= render coin %>
     <p>
-      <%= link_to "Show this coin", coin %>
+     
     </p>
   <% end %>
 </div>
+
+
 
 
 
